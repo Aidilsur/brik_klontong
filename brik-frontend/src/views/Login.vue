@@ -17,11 +17,9 @@ const email = ref("");
 const password = ref("");
 const errors = ref<{ email?: string; password?: string }>({});
 
-// Validate and submit the form
 const handleLogin = async () => {
   errors.value = {}; // reset errors
 
-  // Validate inputs with Zod
   const result = loginSchema.safeParse({
     email: email.value,
     password: password.value,
@@ -32,7 +30,7 @@ const handleLogin = async () => {
     for (const issue of result.error.issues) {
       errors.value[issue.path[0] as "email" | "password"] = issue.message;
     }
-    return; // stop submission if validation fails
+    return;
   }
 
   try {

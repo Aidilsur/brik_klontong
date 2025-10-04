@@ -30,7 +30,6 @@ const handleRegister = async () => {
   });
 
   if (!result.success) {
-    // Populate errors for display
     for (const issue of result.error.issues) {
       errors.value[issue.path[0] as "username" | "email" | "password"] =
         issue.message;
