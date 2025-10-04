@@ -93,7 +93,7 @@ const handleRegister = async () => {
         />
 
         <Button type="submit" variant="solid" color="primary" class="w-full">
-          Login
+          Register
         </Button>
       </form>
 
