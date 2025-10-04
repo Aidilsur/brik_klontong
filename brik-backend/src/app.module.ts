@@ -5,14 +5,6 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductModule } from './product/product.module';
 
-console.log('Full DB config:', {
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  pass: process.env.DB_PASS,
-  db: process.env.DB_NAME,
-});
-
 @Module({
   imports: [
     ConfigModule.forRoot({

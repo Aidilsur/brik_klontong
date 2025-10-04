@@ -1,6 +1,16 @@
-import { Controller, Get, Post, Param, Body, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  Body,
+  Query,
+  Delete,
+  ParseIntPipe,
+  Put,
+} from '@nestjs/common';
 import { ProductService } from './product.service';
-import { Product } from './product.entity';
+import { CreateProductDto } from './dto/create-product.dto';
 
 @Controller('products')
 export class ProductController {
@@ -15,14 +25,24 @@ export class ProductController {
     return this.productService.findAll(page, limit, search);
   }
 
+  @Post()
+  async create(@Body() dto: CreateProductDto) {
+    await this.productService.create(dto);
+    return { message: 'Product created successfully' };
+  }
+
   @Get(':id')
   getOne(@Param('id') id: number) {
     return this.productService.findOne(id);
   }
 
-  @Post()
-  async create(@Body() product: Product) {
-    await this.productService.create(product);
-    return { message: 'Product created successfully' };
+  @Put(':id')
+  update(@Param('id') id: number, @Body() dto: CreateProductDto) {
+    return this.productService.update(id, dto);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id', ParseIntPipe) id: number) {
+    return this.productService.remove(id);
   }
 }

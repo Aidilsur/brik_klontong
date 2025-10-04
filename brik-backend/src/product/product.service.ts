@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like } from 'typeorm';
 import { Product } from './product.entity';
+import { CreateProductDto } from './dto/create-product.dto';
 
 @Injectable()
 export class ProductService {
@@ -16,15 +17,33 @@ export class ProductService {
       take: limit,
       skip: (page - 1) * limit,
     });
-    return { data, total, page, limit };
+    return { data, total };
+  }
+
+  async create(product: Partial<Product>) {
+    const newProduct = this.productRepo.create(product);
+    return this.productRepo.save(newProduct);
   }
 
   async findOne(id: number) {
     return this.productRepo.findOneBy({ id });
   }
 
-  async create(product: Partial<Product>) {
-    const newProduct = this.productRepo.create(product);
-    return this.productRepo.save(newProduct);
+  async update(id: number, dto: CreateProductDto) {
+    const product = await this.productRepo.findOne({ where: { id } });
+    if (!product) {
+      throw new NotFoundException('Product not found');
+    }
+    await this.productRepo.update(id, dto);
+    return { message: 'Product updated successfully' };
+  }
+
+  async remove(id: number) {
+    const product = await this.productRepo.findOne({ where: { id } });
+    if (!product) {
+      throw new NotFoundException(`Product with id ${id} not found`);
+    }
+    await this.productRepo.remove(product);
+    return { message: 'Product deleted successfully' };
   }
 }
