@@ -1,1 +1,58 @@
 @import "tailwindcss";
+@theme {
+  --color-primary: #3b82f6;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+}
+
+@layer components {
+  /* Base button styles */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded text-sm font-medium transition;
+  }
+
+  /* Variants for buttons */
+  .btn-solid-primary {
+    @apply bg-primary text-white hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+  }
+
+  .btn-outline-primary {
+    @apply border border-primary text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+  }
+
+  .btn-ghost-primary {
+    @apply text-primary hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+  }
+
+  /* Disabled state for buttons */
+  .btn:disabled {
+    @apply opacity-50 cursor-not-allowed pointer-events-none;
+  }
+
+  /* Base input styles */
+  .input {
+    @apply px-3 py-2 border rounded-md text-sm shadow-sm transition disabled:bg-gray-100 disabled:cursor-not-allowed;
+  }
+  .input:focus {
+    @apply outline-none ring-2 ring-primary;
+  }
+  .input-error {
+    @apply border-error ring-error;
+  }
+
+  /* Label styling */
+  .input-label {
+    @apply text-sm font-medium text-gray-700;
+  }
+
+  /* Card base */
+  .card {
+    @apply border rounded-lg shadow-sm p-4 sm:p-6 bg-white;
+  }
+  .card-header {
+    @apply mb-4;
+  }
+  .card-footer {
+    @apply mt-4;
+  }
+}
