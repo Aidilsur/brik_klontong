@@ -35,7 +35,7 @@ const handleLogin = async () => {
 
   try {
     await auth.login(email.value, password.value);
-    router.push("/dashboard");
+    router.push("/");
   } catch (error: any) {
     if (error.response) {
       toast.error(error.response.data.message);

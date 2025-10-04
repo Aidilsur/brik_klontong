@@ -58,7 +58,6 @@ export const useAuthStore = defineStore<
     },
 
     async logout() {
-      await api.post("/auth/logout");
       this.user = null;
       this.isAuthenticated = false;
       Cookies.remove("accessToken");

@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import { useAuthStore } from "../store/auth";
+import DashboardLayout from "../components/DashboardLayout.vue";
 
 const RegisterPage = () => import("../views/Register.vue");
 const LoginPage = () => import("../views/Login.vue");
-const DashboardPage = () => import("../views/Dashboard.vue");
+const ProductList = () => import("../views/ProductList.vue");
 // const ProductList = () => import("../views/ProductList.vue");
 // const ProductCreate = () => import("../views/CreateProduct.vue");
 // const ProductDetail = () => import("../views/ProductDetail.vue");
@@ -26,29 +27,18 @@ const routes = [
 
   // protected routes
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    component: DashboardPage,
+    path: "/",
+    component: DashboardLayout,
     meta: { requiresAuth: true },
+    children: [
+      {
+        path: "",
+        name: "ProductList",
+        component: ProductList,
+        meta: { requiresAuth: true },
+      },
+    ],
   },
-  //   {
-  //     path: "/products",
-  //     name: "ProductList",
-  //     component: ProductList,
-  //     meta: { requiresAuth: true },
-  //   },
-  //   {
-  //     path: "/products/create",
-  //     name: "ProductCreate",
-  //     component: ProductCreate,
-  //     meta: { requiresAuth: true },
-  //   },
-  //   {
-  //     path: "/products/:id",
-  //     name: "ProductDetail",
-  //     component: ProductDetail,
-  //     meta: { requiresAuth: true },
-  //   },
 
   // fallback
   //   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
