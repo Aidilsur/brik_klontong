@@ -1,13 +1,7 @@
-<script setup lang="ts">
-import { useCounterStore } from './store/counter';
-
-
-const counter = useCounterStore()
-</script>
-
 <template>
-  <div>
-    <p>Count: {{ counter.count }}</p>
-    <button @click="counter.increment">Tambah</button>
-  </div>
+  <router-view />
 </template>
+
+<script setup lang="ts"></script>
+
+<style></style>
