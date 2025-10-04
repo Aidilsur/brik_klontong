@@ -21,7 +21,8 @@ export class ProductController {
   }
 
   @Post()
-  create(@Body() product: Product) {
-    return this.productService.create(product);
+  async create(@Body() product: Product) {
+    await this.productService.create(product);
+    return { message: 'Product created successfully' };
   }
 }
