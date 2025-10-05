@@ -17,6 +17,9 @@
 
       <!-- Logout button at bottom -->
       <div class="p-4 border-t border-gray-200">
+        <div class="text-center mb-2 font-bold">
+          <p>{{ userName }}</p>
+        </div>
         <Button
           type="submit"
           variant="outline"
@@ -49,6 +52,8 @@ const router = useRouter();
 function selectMenu(menu: string) {
   selectedMenu.value = menu;
 }
+
+const userName = auth.user?.name;
 
 function logout() {
   auth.logout();
