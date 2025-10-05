@@ -96,7 +96,7 @@ npm run dev
 
 ```bash
 cd brik_backend
-cd seed
+npm seed
 ```
 
 ## Catatan Penting
