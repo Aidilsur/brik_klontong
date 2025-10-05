@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, Like } from 'typeorm';
-import { Product } from './product.entity';
+import { Raw, Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
+import { Product } from './product.entity';
 
 @Injectable()
 export class ProductService {
@@ -13,7 +13,9 @@ export class ProductService {
 
   async findAll(page = 1, limit = 10, search?: string) {
     const [data, total] = await this.productRepo.findAndCount({
-      where: search ? { name: Like(`%${search}%`) } : {},
+      where: search
+        ? { name: Raw((alias) => `${alias} ILIKE '%${search}%'`) }
+        : {},
       take: limit,
       skip: (page - 1) * limit,
     });

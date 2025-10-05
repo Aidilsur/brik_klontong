@@ -41,7 +41,7 @@ const {
   errorMessage = "",
 } = defineProps<{
   label: string;
-  modelValue: string;
+  modelValue: string | number;
   name: string;
   type?: string;
   disabled?: boolean;

@@ -42,7 +42,7 @@ export const useAuthStore = defineStore<
       if (token) {
         Cookies.set("accessToken", token, { expires: 7 });
       }
-      await this.getUser(); // akan dikenali dengan typing di atas
+      await this.getUser();
     },
 
     async getUser() {

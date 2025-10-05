@@ -5,13 +5,11 @@ import DashboardLayout from "../components/DashboardLayout.vue";
 const RegisterPage = () => import("../views/Register.vue");
 const LoginPage = () => import("../views/Login.vue");
 const ProductList = () => import("../views/ProductList.vue");
-// const ProductList = () => import("../views/ProductList.vue");
-// const ProductCreate = () => import("../views/CreateProduct.vue");
-// const ProductDetail = () => import("../views/ProductDetail.vue");
+const ProductAddPage = () => import("../views/AddProduct.vue");
+const ProductDetailPage = () => import("../views/ProductDetail.vue");
 // const NotFound = () => import("../views/NotFound.vue");
 
 const routes = [
-  //   { path: "/", redirect: "/dashboard" },
   {
     path: "/login",
     name: "Login",
@@ -37,11 +35,21 @@ const routes = [
         component: ProductList,
         meta: { requiresAuth: true },
       },
+      {
+        path: "/create-product",
+        name: "createProduct",
+        component: ProductAddPage,
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "/product/:id/detail",
+        name: "ProductUpdate",
+        component: ProductDetailPage,
+        meta: { requiresAuth: true },
+        props: true,
+      },
     ],
   },
-
-  // fallback
-  //   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
 ];
 
 const router = createRouter({

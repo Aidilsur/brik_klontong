@@ -1,7 +1,9 @@
 <template>
   <div class="flex h-screen bg-gray-50">
     <!-- Sidebar -->
-    <aside class="flex flex-col w-64 bg-white border-r border-gray-200">
+    <aside
+      class="flex-col w-64 bg-white border-r border-gray-20 hidden lg:flex"
+    >
       <!-- Menu -->
       <nav class="flex flex-col flex-grow p-4 space-y-2">
         <button
